@@ -1,0 +1,155 @@
+<h2>剧本引擎设计 — 如何保证案件精彩</h2>
+<p class="subtitle">不靠运气，靠结构</p>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>🎯 核心思路：分层生成 + 品质校验</h3>
+<p>不是一次 Prompt 扔给 AI 就完事。分三层生成，每层有品质标准，不合格则重新生成。</p>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 28px 0;">
+
+<h3>第一层：案件骨架 — 核心诡计设计</h3>
+<div class="section">
+  <p style="color: #aaa; font-size: 14px;">先不写人物和对话，先设计一个<strong>真正有意思的核心诡计</strong>。这是精彩案件的地基。</p>
+  <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 12px;">
+    <span class="label">AI 必须完成的诡计设计清单</span>
+    <table style="width: 100%; margin-top: 12px; font-size: 14px; color: #aaa; border-collapse: collapse;">
+      <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <td style="padding: 8px; color: #ddd; width: 140px;">核心诡计类型</td>
+        <td style="padding: 8px;">不在场证明诡计 / 身份替换 / 密室 / 叙述性诡计 / 时间诡计 / 凶手即第一发现者...（AI 从诡计库中随机选取并变体）</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <td style="padding: 8px; color: #ddd;">三层真相结构</td>
+        <td style="padding: 8px;"><strong>表面真相</strong>（一开始看起来像什么）→ <strong>调查揭露</strong>（收集线索后指向谁）→ <strong>最终真相</strong>（反转后的真正答案）</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <td style="padding: 8px; color: #ddd;">至少一个红鲱鱼</td>
+        <td style="padding: 8px;">设计 1-2 个精心布置的误导方向：看起来最有动机的人其实无辜、看起来无关的人反而是真凶</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <td style="padding: 8px; color: #ddd;">关键反转点</td>
+        <td style="padding: 8px;">案件必须有一个「原来如此」时刻——当玩家发现某条关键线索后，整个案件的面貌翻转</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; color: #ddd;">逻辑闭环验证</td>
+        <td style="padding: 8px;">时间线必须自洽，动机必须合理，手法必须可能。不能有逻辑漏洞。</td>
+      </tr>
+    </table>
+  </div>
+  <div style="margin-top: 12px; background: rgba(255,200,50,0.08); border: 1px solid rgba(255,200,50,0.2); border-radius: 8px; padding: 12px; font-size: 14px; color: #ccc;">
+    <strong>⚡ 品质闸门</strong>：诡计生成后，AI 自我审查——「这个诡计是否有新意？是否至少包含一个读者预料之外的反转？」不通过则重新生成。
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 28px 0;">
+
+<h3>第二层：人物血肉 — 每个角色都是嫌疑人</h3>
+<div class="section">
+  <p style="color: #aaa; font-size: 14px;">好的推理剧中，每一个嫌疑人都有一个体面的动机，没有人是"纯路人"。</p>
+  <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 12px;">
+    <span class="label">人物设计硬约束</span>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+      <div>
+        <strong style="color: #ddd; font-size: 14px;">每个人物必须拥有：</strong>
+        <ul style="margin: 6px 0 0 0; padding-left: 18px; color: #aaa; font-size: 13px;">
+          <li>一个<strong>表面动机</strong>（容易被发现的）</li>
+          <li>一个<strong>隐藏秘密</strong>（需要深挖才暴露的）</li>
+          <li>一段<strong>与被害人的特殊关系</strong></li>
+          <li>一个<strong>不在场证明</strong>（可能是假的）</li>
+          <li>一句<strong>标志性谎言</strong>（对话中会出现的）</li>
+        </ul>
+      </div>
+      <div>
+        <strong style="color: #ddd; font-size: 14px;">人物关系网要求：</strong>
+        <ul style="margin: 6px 0 0 0; padding-left: 18px; color: #aaa; font-size: 13px;">
+          <li>至少一对<strong>秘密关系</strong>（不为外人知的）</li>
+          <li>至少一个角色<strong>在保护另一个人</strong></li>
+          <li>至少一个角色<strong>知道的比说的多</strong></li>
+          <li>人物之间<strong>互相矛盾</strong>的证词至少 2 处</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 28px 0;">
+
+<h3>第三层：对话编织 — 每个字都有信息量</h3>
+<div class="section">
+  <p style="color: #aaa; font-size: 14px;">对话不是填充物。每段对话至少承载以下功能之一：提供线索 / 埋下谎言 / 塑造人物 / 制造误导。</p>
+  <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 12px;">
+    <span class="label">对话生成规范</span>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 10px; font-size: 13px;">
+      <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 6px;">
+        <span style="color: #4ec9b0;">说话风格差异化</span>
+        <ul style="margin: 8px 0 0; padding-left: 16px; color: #888;">
+          <li>每个角色有独特说话方式：语气词、句式长短、专业术语</li>
+          <li>紧张时、说谎时说话方式有微妙变化</li>
+          <li>社交地位在对话中体现（恭敬/傲慢/回避）</li>
+        </ul>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 6px;">
+        <span style="color: #4ec9b0;">信息递进节奏</span>
+        <ul style="margin: 8px 0 0; padding-left: 16px; color: #888;">
+          <li>第一轮对话：自报家门 + 表面证词 + 轻量误导</li>
+          <li>深入追问：暴露矛盾 + 透露秘密 + 情感波动</li>
+          <li>最后摊牌（关键线索触发）：崩溃/坦白/最后的谎言</li>
+        </ul>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 6px;">
+        <span style="color: #4ec9b0;">谎言设计</span>
+        <ul style="margin: 8px 0 0; padding-left: 16px; color: #888;">
+          <li>真话中掺假：80% 真实 + 20% 谎言才难辨别</li>
+          <li>每个谎言留下<strong>可被推翻</strong>的痕迹</li>
+          <li>有些谎言是善意的（保护他人），有些是恶意的（掩盖罪行）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 28px 0;">
+
+<h3>🔁 最终品质校验</h3>
+<div class="section">
+  <p style="color: #aaa; font-size: 14px;">全案生成后，AI 以「挑剔玩家」的视角检查质量，不合格项触发针对性重新生成。</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+    <div style="background: rgba(255,80,80,0.06); border: 1px solid rgba(255,80,80,0.15); border-radius: 8px; padding: 14px;">
+      <span class="label" style="color: #e88;">不通过标准</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 13px;">
+        <li>真凶一眼就能看出来（前 3 条线索就暴露）</li>
+        <li>存在逻辑漏洞（时间线对不上）</li>
+        <li>人物动机不合理</li>
+        <li>关键线索与真相无关</li>
+        <li>反转过于牵强</li>
+        <li>有角色毫无存在意义</li>
+      </ul>
+    </div>
+    <div style="background: rgba(80,255,80,0.06); border: 1px solid rgba(80,255,80,0.15); border-radius: 8px; padding: 14px;">
+      <span class="label" style="color: #8e8;">通过标准</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 13px;">
+        <li>核心诡计有原创性</li>
+        <li>3 个嫌疑人中至少有 2 个看起来像真凶</li>
+        <li>反转点能带来真正的「原来如此」</li>
+        <li>每条线索都有存在的意义</li>
+        <li>对话读起来自然不僵硬</li>
+        <li>真相在回看时感觉「合理且巧妙」</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 28px 0;">
+
+<h3>📐 Prompt 架构</h3>
+<div class="section">
+  <p style="color: #aaa; font-size: 14px;">不是一条 Prompt，而是<strong>编排好的生成流水线</strong>：</p>
+  <div style="background: #0f0f1a; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 12px; font-family: monospace; font-size: 13px; color: #7ec87e; line-height: 1.8;">
+    1. System Prompt：设定 AI 为资深推理小说作家角色<br>
+    2. 参数注入：{风格} {难度} {案件类型} {角色数}<br>
+    3. 第一轮 → 生成诡计骨架 + 逻辑自检<br>
+    4. 第二轮 → 基于通过校验的诡计，生成人物 + 关系网<br>
+    5. 第三轮 → 基于诡计+人物，生成对话脚本 + 线索分布<br>
+    6. 最终轮 → 品质自审 + 输出结构化 JSON
+  </div>
+</div>

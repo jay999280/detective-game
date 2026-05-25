@@ -1,0 +1,27 @@
+<h2>整体架构方案对比</h2>
+<p class="subtitle">AI 驱动案件 + 可玩游戏引擎</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>一体化游戏状态机</h3>
+      <p>单页面，所有游戏阶段（案件生成 → 调查 → 推理 → 结局）由一个 Zustand Store 统一管理，组件按阶段条件渲染</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>开发快，状态管理集中</li><li>游戏流程线性可控</li><li>无需路由，前后端通信简单</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>组件树可能很深</li><li>游戏阶段切换不够灵活</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>阶段路由 + 事件驱动</h3>
+      <p>每个游戏阶段独立路由页面，共享 GameStore；游戏事件（发现线索、对话完成等）触发状态变化和阶段推进</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>各阶段独立开发测试</li><li>扩展新案件类型方便</li><li>事件系统解耦组件</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>初始搭建工作多一些</li><li>需管理跨页面状态持久化</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<h2>游戏核心流程</h2>
+<p class="subtitle">玩家经历的完整游戏循环</p>
+
+<div class="mockup">
+  <div class="mockup-body" style="padding: 32px; background: #0f0f23; border-radius: 12px;">
+    <div style="display: flex; align-items: center; gap: 16px; justify-content: center; flex-wrap: wrap; font-family: monospace;">
+      <div style="background: #1a1a3e; border: 1px solid #4a4a9e; border-radius: 8px; padding: 16px; text-align: center; min-width: 100px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🏠</div>
+        <div style="color: #ccc; font-size: 14px;">首页</div>
+        <div style="color: #888; font-size: 12px;">新游戏 / 设置</div>
+      </div>
+      <div style="color: #4a4a9e; font-size: 24px;">→</div>
+      <div style="background: #1a3e1a; border: 1px solid #4a9e4a; border-radius: 8px; padding: 16px; text-align: center; min-width: 100px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🎬</div>
+        <div style="color: #ccc; font-size: 14px;">案件生成</div>
+        <div style="color: #888; font-size: 12px;">AI 生成案件</div>
+      </div>
+      <div style="color: #4a9e4a; font-size: 24px;">→</div>
+      <div style="background: #3e3e1a; border: 1px solid #9e9e4a; border-radius: 8px; padding: 16px; text-align: center; min-width: 100px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">📖</div>
+        <div style="color: #ccc; font-size: 14px;">案件开场</div>
+        <div style="color: #888; font-size: 12px;">案情介绍</div>
+      </div>
+      <div style="color: #9e9e4a; font-size: 24px;">→</div>
+      <div style="background: #1a3e3e; border: 1px solid #4a9e9e; border-radius: 8px; padding: 16px; text-align: center; min-width: 100px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
+        <div style="color: #ccc; font-size: 14px;">调查阶段</div>
+        <div style="color: #888; font-size: 12px;">对话 / 搜证</div>
+      </div>
+      <div style="color: #4a9e9e; font-size: 24px;">→</div>
+      <div style="background: #3e1a3e; border: 1px solid #9e4a9e; border-radius: 8px; padding: 16px; text-align: center; min-width: 100px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🧩</div>
+        <div style="color: #ccc; font-size: 14px;">推理面板</div>
+        <div style="color: #888; font-size: 12px;">拼凑线索</div>
+      </div>
+      <div style="color: #9e4a9e; font-size: 24px;">→</div>
+      <div style="background: #3e1a1a; border: 1px solid #9e4a4a; border-radius: 8px; padding: 16px; text-align: center; min-width: 100px;">
+        <div style="font-size: 24px; margin-bottom: 8px;">⚖️</div>
+        <div style="color: #ccc; font-size: 14px;">真相揭晓</div>
+        <div style="color: #888; font-size: 12px;">指认真凶</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 32px;">
+  <h3>各阶段说明</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+    <div class="section">
+      <div class="label">阶段 1 · 首页</div>
+      <p>选择开始新游戏。可选：指定案件风格、难度、角色数量等偏好参数。点击"开始"后调用后端 AI 生成完整案件。</p>
+    </div>
+    <div class="section">
+      <div class="label">阶段 2 · 案件生成</div>
+      <p>后端调用 Claude API，根据偏好生成完整案件数据：背景故事、人物列表及档案、线索清单、真相逻辑链。显示加载动画。</p>
+    </div>
+    <div class="section">
+      <div class="label">阶段 3 · 案件开场</div>
+      <p>以视觉小说方式呈现案件发现场景。旁白/发现者介绍案情概要。玩家首次了解案件基本情况。</p>
+    </div>
+    <div class="section">
+      <div class="label">阶段 4 · 调查阶段</div>
+      <p>核心玩法。在多个场景中与嫌疑人对话、搜索线索。对话为分支式，不同选择可能触发不同信息。线索自动收集到线索栏。</p>
+    </div>
+    <div class="section">
+      <div class="label">阶段 5 · 推理面板</div>
+      <p>线索可视化面板。玩家可以拖拽组合线索形成推理链，标注可疑人物，记录猜想。系统不限制自由推理。</p>
+    </div>
+    <div class="section">
+      <div class="label">阶段 6 · 真相揭晓</div>
+      <p>玩家提交最终推理：指认凶手 + 陈述动机 + 作案手法。系统比对案件真相评分，给出评价和解锁完整真相回顾。</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,187 @@
+<h2>游戏核心流程 · 详细设计</h2>
+<p class="subtitle">从案件生成到真相大白，完整游戏循环</p>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>🏠 阶段 1 · 首页 & 案件配置</h3>
+<div class="section">
+  <p>玩家在首页配置本次案件的偏好参数，点击「开始新案件」后触发后端 AI 生成。</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">可配置参数</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>案件风格：本格/社会派/刑侦/悬疑</li>
+        <li>难度：简单（3人2线索）/ 中等（5人4线索）/ 困难（7人6线索）</li>
+        <li>背景时代：现代/近代/架空</li>
+        <li>案件类型：谋杀/失踪/盗窃/绑架</li>
+        <li>额外标签：密室、反转、连续案件...</li>
+      </ul>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">历史案件存档</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>已完成的案件卡片展示</li>
+        <li>评分：S/A/B/C 等级</li>
+        <li>可回顾完整真相</li>
+        <li>可重玩（但答案不变）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>🎬 阶段 2 · AI 案件生成</h3>
+<div class="section">
+  <p>后端收到配置后，构造精心设计的 Prompt 调用 Claude API，生成结构化案件数据。</p>
+  <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 12px;">
+    <span class="label">AI 生成的数据结构</span>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; font-size: 13px; color: #aaa;">
+      <div>
+        <strong style="color: #ddd;">案件元信息</strong>
+        <p>标题、类型、难度、简介</p>
+      </div>
+      <div>
+        <strong style="color: #ddd;">人物档案</strong>
+        <p>姓名、年龄、职业、与被害人关系、动机、秘密、对话脚本</p>
+      </div>
+      <div>
+        <strong style="color: #ddd;">线索清单</strong>
+        <p>线索分类（物证/证言/矛盾点）、发现场景、描述文本、关联人物</p>
+      </div>
+      <div>
+        <strong style="color: #ddd;">真相逻辑链</strong>
+        <p>真凶、动机、作案手法、关键证据链、完整时间线、多个误导方向</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 12px; color: #888; font-size: 14px;">前端显示氛围动画（打字机效果 + 案件碎片拼合），增强沉浸感。案件数据缓存在服务端 JSON 文件，可重复访问。</p>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>📖 阶段 3 · 案件开场</h3>
+<div class="section">
+  <p>以视觉小说风格呈现案件发现过程，建立氛围和悬念。这是玩家第一次接触案件。</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">开场要素</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li><strong>旁白叙述</strong>：场景描写、气氛渲染</li>
+        <li><strong>发现者登场</strong>：谁发现的、什么反应</li>
+        <li><strong>案情概要</strong>：时间、地点、被害人、初步状况</li>
+        <li><strong>登场人物一览</strong>：嫌疑人列表+简短描述</li>
+      </ul>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">UI 形式</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>深色背景 + 场景氛围图（AI 生成或 CSS 绘制）</li>
+        <li>逐句浮现的文本，手动点击推进</li>
+        <li>关键信息（时间、地点、被害人）高亮标记</li>
+        <li>结束后自动进入调查阶段</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>🔍 阶段 4 · 调查阶段（核心玩法）</h3>
+<div class="section">
+  <p>玩家在多个场景间切换，与嫌疑人对话、搜寻物证。这是游戏中最自由、时长占比最大的阶段。</p>
+
+  <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 12px;">
+    <span class="label">场景系统</span>
+    <p style="color: #aaa; font-size: 14px;">每个案件 AI 生成 3-6 个调查场景（案发现场、被害人家、嫌疑人工作地、街头、警察局...）。玩家点击场景中的热点进行调查。</p>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+      <span style="background: #2a2a4a; padding: 4px 10px; border-radius: 4px; font-size: 12px; color: #aaa;">🏠 被害人家</span>
+      <span style="background: #2a2a4a; padding: 4px 10px; border-radius: 4px; font-size: 12px; color: #aaa;">🚨 案发现场</span>
+      <span style="background: #2a2a4a; padding: 4px 10px; border-radius: 4px; font-size: 12px; color: #aaa;">🏢 公司办公室</span>
+      <span style="background: #2a2a4a; padding: 4px 10px; border-radius: 4px; font-size: 12px; color: #aaa;">🏪 附近商铺</span>
+      <span style="background: #2a2a4a; padding: 4px 10px; border-radius: 4px; font-size: 12px; color: #aaa;">🏥 法医室</span>
+      <span style="background: #2a2a4a; padding: 4px 10px; border-radius: 4px; font-size: 12px; color: #aaa;">🚔 警察局</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">对话系统</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>底部对话面板，角色名 + 立绘/头像</li>
+        <li>对话逐句显示，点击推进</li>
+        <li><strong>分支选项</strong>：关键节点出现追问/换个话题/施加压力等选项</li>
+        <li>不同选项可能解锁不同信息或触发人物情绪反应</li>
+        <li>角色有<strong>好感度/信任度</strong>隐藏数值，影响信息透露程度</li>
+        <li>说谎的角色：证词中埋有矛盾，需与其他线索对照</li>
+      </ul>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">线索收集</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>场景点击 → 弹出线索发现动画</li>
+        <li>对话中的关键信息自动标记为<strong>证言线索</strong></li>
+        <li>线索分三类：<strong>物证</strong>（实物） / <strong>证言</strong>（口供） / <strong>矛盾点</strong>（逻辑冲突）</li>
+        <li>右侧始终可见线索栏，实时更新</li>
+        <li>新线索有闪烁提示，已查看的灰色标记</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>🧩 阶段 5 · 推理面板</h3>
+<div class="section">
+  <p>玩家随时可以切换到推理面板（工具栏常驻入口），整理已收集的线索，构建推理。这是从"收集信息"到"形成判断"的关键过渡。</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">推理画布</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>所有线索以卡片形式展示在画布上</li>
+        <li>可<strong>拖拽</strong>线索卡片自由排列</li>
+        <li>可<strong>连线</strong>：在两个线索间画连接线并标注关系（"矛盾" / "佐证" / "时间关联"）</li>
+        <li>可创建<strong>便签</strong>：写下自己的推理笔记</li>
+        <li>可<strong>标记嫌疑人</strong>：将线索拖到嫌疑人头像上建立关联</li>
+      </ul>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">人物档案面板</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li>所有嫌疑人/关键人物的卡片</li>
+        <li>已揭露的动机、不在场证明、矛盾点</li>
+        <li>人物关系图（自动生成）</li>
+        <li>嫌疑度用颜色标注（绿→黄→红）</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top: 12px; color: #888; font-size: 14px;">推理面板完全是辅助工具，不强制使用。玩家也可以在脑中推理，直接进入真相揭晓。</p>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>⚖️ 阶段 6 · 真相揭晓与评分</h3>
+<div class="section">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">提交推理</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li><strong>指认真凶</strong>：从嫌疑人列表中选择</li>
+        <li><strong>陈述动机</strong>：从收集的动机线索中选择</li>
+        <li><strong>还原手法</strong>：自由文本输入或从关键线索中选择组合</li>
+        <li>提交确认：「你确定吗？一旦提交无法修改」</li>
+      </ul>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px;">
+      <span class="label">评分与回顾</span>
+      <ul style="margin: 8px 0 0 0; padding-left: 18px; color: #aaa; font-size: 14px;">
+        <li><strong>S 级</strong>：真凶 + 动机 + 手法全对，发现所有关键线索</li>
+        <li><strong>A 级</strong>：真凶正确，动机/手法部分正确</li>
+        <li><strong>B 级</strong>：真凶正确但推理过程不够</li>
+        <li><strong>C 级</strong>：指认错误</li>
+        <li>评分后解锁<strong>完整真相回顾</strong>：时间线动画、真凶动机独白</li>
+      </ul>
+    </div>
+  </div>
+</div>

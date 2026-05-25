@@ -1,0 +1,337 @@
+{
+  "id": "preset-02",
+  "meta": {
+    "title": "白楼遗书",
+    "style": "suspense",
+    "difficulty": "medium",
+    "type": "murder",
+    "summary": "1936年，上海法租界。白公馆的主人白景山在书房中离奇死亡，死因是中毒。桌上留有一封遗书，声称他是自杀。但遗书的笔迹有微妙的不自然，而白景山死前三天刚修改了遗嘱。白家的四个子女、管家、私人医生——谁是凶手？"
+  },
+  "victim": {
+    "name": "白景山",
+    "age": 62,
+    "occupation": "白氏纺织厂老板",
+    "causeOfDeath": "氰化物中毒",
+    "timeOfDeath": "1936年8月15日 21:00-22:00",
+    "location": "上海法租界白公馆二楼书房"
+  },
+  "characters": [
+    {
+      "id": "char-01",
+      "name": "白亦轩",
+      "age": 35,
+      "occupation": "白家长子，留洋归来的律师",
+      "avatar": "🎩",
+      "relationToVictim": "长子",
+      "surfaceMotive": "父亲反对他与舞女结婚，威胁取消继承权",
+      "hiddenSecret": "欠下巨额赌债，急需遗产还债",
+      "alibi": "声称21:00在法租界俱乐部和朋友喝酒",
+      "telltaleLie": "父亲虽然严厉，但一直是我最敬重的人",
+      "dialogues": [
+        {
+          "id": "dlg-01-01",
+          "text": "那天晚上我在俱乐部和李议员他们喝酒。你可以去问。父亲的事...我很震惊，但我相信那封遗书是真的，他最近压力很大。",
+          "speaker": "char-01",
+          "phase": "initial",
+          "options": [
+            { "text": "追问债务情况", "leadsTo": "dlg-01-02", "trustEffect": -5 },
+            { "text": "询问遗产分配", "leadsTo": "dlg-01-03", "trustEffect": 5 }
+          ]
+        },
+        {
+          "id": "dlg-01-02",
+          "text": "我承认我欠了一些钱。但那是生意上的周转！我没必要为了钱杀自己的父亲。",
+          "speaker": "char-01",
+          "phase": "deep",
+          "options": [
+            { "text": "追问欠债金额", "leadsTo": "dlg-01-04", "trustEffect": -5 }
+          ]
+        },
+        {
+          "id": "dlg-01-03",
+          "text": "新遗嘱？你是说父亲改遗嘱了？我不知道...他从来没和我说过。",
+          "speaker": "char-01",
+          "phase": "initial"
+        },
+        {
+          "id": "dlg-01-04",
+          "text": "五万大洋。够多了吧。但我告诉你，我是他儿子，我不需要通过杀他来继承遗产。",
+          "speaker": "char-01",
+          "phase": "confrontation"
+        }
+      ]
+    },
+    {
+      "id": "char-02",
+      "name": "白玉兰",
+      "age": 28,
+      "occupation": "白家次女，洋行职员",
+      "avatar": "👗",
+      "relationToVictim": "次女",
+      "surfaceMotive": "父亲反对她从事社会工作，父女关系紧张",
+      "hiddenSecret": "私下加入了地下抗日组织，需要大笔资金",
+      "alibi": "声称21:00在自己房间看书",
+      "telltaleLie": "我们家的佣人可以证明我没出过房门",
+      "dialogues": [
+        {
+          "id": "dlg-02-01",
+          "text": "父亲是个守旧的人，他觉得女孩子不该抛头露面。但我有自己的路要走。那天晚上我在房里看《西行漫记》。",
+          "speaker": "char-02",
+          "phase": "initial",
+          "options": [
+            { "text": "询问父女矛盾", "leadsTo": "dlg-02-02", "trustEffect": 5 },
+            { "text": "质疑她的不在场证明", "leadsTo": "dlg-02-03", "trustEffect": -10 }
+          ]
+        },
+        {
+          "id": "dlg-02-02",
+          "text": "他觉得女人就该嫁人、管家。但我读过那么多书，见过那么多苦难...我不能坐视不管。",
+          "speaker": "char-02",
+          "phase": "deep"
+        },
+        {
+          "id": "dlg-02-03",
+          "text": "好吧，我出去了。我去见了几个朋友。但这是我们之间的事，和父亲的死无关。",
+          "speaker": "char-02",
+          "phase": "confrontation"
+        }
+      ]
+    },
+    {
+      "id": "char-03",
+      "name": "赵德发",
+      "age": 58,
+      "occupation": "白公馆管家",
+      "avatar": "🤵",
+      "relationToVictim": "服侍白家三十年的老管家",
+      "surfaceMotive": "无",
+      "hiddenSecret": "其实是白景山同父异母的弟弟，二十年前被逐出家门后以管家身份潜回",
+      "alibi": "声称21:00-22:00在厨房监督准备夜宵",
+      "telltaleLie": "我只是个下人，什么都不知道",
+      "dialogues": [
+        {
+          "id": "dlg-03-01",
+          "text": "我在这个家三十年，看着少爷小姐们长大。老爷的死...我比谁都难过。",
+          "speaker": "char-03",
+          "phase": "initial",
+          "options": [
+            { "text": "询问当晚各人动向", "leadsTo": "dlg-03-02", "trustEffect": 5, "unlocksClue": "clue-04" },
+            { "text": "追问他的真实身份", "leadsTo": "dlg-03-03", "trustEffect": -10 }
+          ]
+        },
+        {
+          "id": "dlg-03-02",
+          "text": "大少爷八点就出去了。大小姐一直在楼上，但九点半我看到她往后门的方向走。医生八点半来过，在书房待了半小时。何太太也在，她是来找老爷谈工厂的事的。",
+          "speaker": "char-03",
+          "phase": "deep"
+        },
+        {
+          "id": "dlg-03-03",
+          "text": "你...你是怎么知道的？是的，我是他弟弟。但那是二十年前的事了。我回来不是为了报仇，是为了赎罪。我没有杀他。",
+          "speaker": "char-03",
+          "phase": "confrontation"
+        }
+      ]
+    },
+    {
+      "id": "char-04",
+      "name": "何美琳",
+      "age": 45,
+      "occupation": "白氏纺织厂合伙人遗孀",
+      "avatar": "👩‍💼",
+      "relationToVictim": "商业伙伴的遗孀，工厂第二大股东",
+      "surfaceMotive": "死者生前试图收购她手中的股份被拒",
+      "hiddenSecret": "死者多年前在一次事故中导致了她丈夫的死亡，她一直在收集证据",
+      "alibi": "声称21:00在家，但佣人说她出去了",
+      "telltaleLie": "景山和我是几十年的老朋友了",
+      "dialogues": [
+        {
+          "id": "dlg-04-01",
+          "text": "景山和先夫是老搭档，我怎么会害他？那天晚上我去公馆坐了十分钟就走了。",
+          "speaker": "char-04",
+          "phase": "initial",
+          "options": [
+            { "text": "追问股份纠纷", "leadsTo": "dlg-04-02", "trustEffect": 0 },
+            { "text": "直接问她丈夫的死因", "leadsTo": "dlg-04-03", "trustEffect": -5, "unlocksClue": "clue-07" }
+          ]
+        },
+        {
+          "id": "dlg-04-02",
+          "text": "他想把我的股份全买走，我不同意。那是先夫留下的，我不能让它变成别人的。",
+          "speaker": "char-04",
+          "phase": "deep"
+        },
+        {
+          "id": "dlg-04-03",
+          "text": "我丈夫的死不是意外。那场大火，他本不该在那里的。是白景山叫他去仓库的，他自己却爽约了。这么多年了，我一直想问：你为什么不来？",
+          "speaker": "char-04",
+          "phase": "confrontation"
+        }
+      ]
+    },
+    {
+      "id": "char-05",
+      "name": "孙思远",
+      "age": 52,
+      "occupation": "白家私人医生",
+      "avatar": "👨‍⚕️",
+      "relationToVictim": "死者的私人医生及好友",
+      "surfaceMotive": "死者最近发现他虚报诊金",
+      "hiddenSecret": "长期给白景山开含吗啡的止痛药并使其成瘾，死者威胁要举报",
+      "alibi": "声称21:00出诊后去了药房，但药房说没看到他人",
+      "telltaleLie": "我只是一名医生，我的职责是救人",
+      "dialogues": [
+        {
+          "id": "dlg-05-01",
+          "text": "景山最近身体一直不好，失眠、心慌。我给他开了一些安神药。那天晚上我八点半到九点在他书房，给他做了例行检查。",
+          "speaker": "char-05",
+          "phase": "initial",
+          "options": [
+            { "text": "询问药物详情", "leadsTo": "dlg-05-02", "trustEffect": -5, "unlocksClue": "clue-06" },
+            { "text": "询问他与死者的私人关系", "leadsTo": "dlg-05-03", "trustEffect": 5 }
+          ]
+        },
+        {
+          "id": "dlg-05-02",
+          "text": "只是一些镇定剂...好吧，是含有吗啡成分的止痛药。他被慢性疼痛困扰，需要它。剂量都在安全范围内。",
+          "speaker": "char-05",
+          "phase": "deep"
+        },
+        {
+          "id": "dlg-05-03",
+          "text": "我们认识二十年了。他信任我。但我最近...犯了一个错误。账目上的问题。他说要查清楚。但我发誓我没有因为这个...我不会杀他。",
+          "speaker": "char-05",
+          "phase": "confrontation"
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-01",
+      "name": "白公馆书房",
+      "description": "红木书柜沿墙而立，满是线装古籍和英文原版书。书桌上摊开着一本未合上的日记，旁边的墨水瓶开着盖子，一支钢笔搁在纸上。死者被发现时伏在桌上，面色灰青。那封遗书就放在他左手边——左手。白景山是右撇子。",
+      "atmosphere": "interior",
+      "hotspots": [
+        { "id": "hot-01-01", "label": "遗书", "description": "遗书内容简洁得体，笔迹与死者的几乎一样——但仔细看，收笔处有轻微的颤抖，像是被人模仿的。", "unlocksClue": "clue-01" },
+        { "id": "hot-01-02", "label": "茶杯", "description": "一杯喝了一半的龙井茶，杯底有白色沉淀物，散发淡淡的苦杏仁味。", "unlocksClue": "clue-02" },
+        { "id": "hot-01-03", "label": "书桌抽屉", "description": "抽屉里有一本账本，记录着几个人的秘密：孙医生的诊金虚报、大少爷的借条、工厂那场大火的真相。", "unlocksClue": "clue-03" },
+        { "id": "hot-01-04", "label": "药瓶", "description": "一个标着'安神散'的小瓷瓶，但里面装的白色粉末和孙医生描述的吗啡剂量不符——分量少了很多。" }
+      ],
+      "charactersPresent": []
+    },
+    {
+      "id": "scene-02",
+      "name": "白公馆后花园",
+      "description": "夜色下的花园静谧幽深，栀子花香味浓郁。通往后门的碎石小径上散落着几朵被踩过的花。后门虚掩着，门外是一条幽暗的弄堂。",
+      "atmosphere": "street",
+      "hotspots": [
+        { "id": "hot-02-01", "label": "被踩踏的花丛", "description": "通往围墙的方向，有人明显偏离了小路进入了花丛。花丛后藏着一个铁皮箱子，里面有一些纸张烧过的灰烬。", "unlocksClue": "clue-05" },
+        { "id": "hot-02-02", "label": "后门把手", "description": "门把手上没有灰尘——最近被人擦过。门外弄堂的地上有一张1936年8月15日的电车票。" }
+      ],
+      "charactersPresent": []
+    },
+    {
+      "id": "scene-03",
+      "name": "何美琳的客厅",
+      "description": "何太太的住所离白公馆只有两条街。客厅里挂着她亡夫的遗像，香炉里还插着新点的香。茶几上摊着一叠发黄的报纸和工厂旧文件。",
+      "atmosphere": "interior",
+      "hotspots": [
+        { "id": "hot-03-01", "label": "旧报纸", "description": "1928年8月15日的报纸头版：白氏纺织厂仓库大火致一人死亡。何美琳的丈夫死于大火，日期恰好是7年前的今天。", "unlocksClue": "clue-08" },
+        { "id": "hot-03-02", "label": "工厂旧文件", "description": "一份1928年的仓库调度记录显示：白景山亲笔签字要求何的丈夫当晚去仓库处理一批'紧急货物'。而白景山自己的日程本显示同一时间他在俱乐部。" }
+      ],
+      "charactersPresent": ["char-04"]
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue-01",
+      "name": "左手写的遗书",
+      "description": "遗书笔迹模仿得极像，但细微的颤抖和不自然的间距暴露了伪造痕迹。死者是右撇子，而遗书放在左手边——不合常理。",
+      "type": "physical",
+      "foundInScene": "scene-01",
+      "isKeyEvidence": true
+    },
+    {
+      "id": "clue-02",
+      "name": "带氰化物的茶杯",
+      "description": "龙井茶中含有氰化物。茶杯上没有指纹——被人擦拭过。茶叶的种类是狮峰龙井，只有管家赵德发泡茶用这种茶叶。",
+      "type": "physical",
+      "foundInScene": "scene-01",
+      "isKeyEvidence": true
+    },
+    {
+      "id": "clue-03",
+      "name": "死者的秘密账本",
+      "description": "白景山记录着身边所有人的秘密：孙医生虚报诊金三年、大少爷欠赌债五万大洋、何美琳丈夫之死的真相。这本账本几乎给了所有人杀人动机。",
+      "type": "physical",
+      "foundInScene": "scene-01",
+      "isKeyEvidence": true
+    },
+    {
+      "id": "clue-04",
+      "name": "管家的目击",
+      "description": "管家赵德发目击白玉兰在21:30从后门离开，这与白玉兰最初的不在场证明矛盾。同时他提到医生在书房待了半小时——时间远比例行检查长。",
+      "type": "testimony",
+      "foundInDialogue": "dlg-03-02",
+      "relatedCharacter": "char-03",
+      "isKeyEvidence": true
+    },
+    {
+      "id": "clue-05",
+      "name": "花园中烧毁的纸张",
+      "description": "后花园花丛后藏有焚烧纸张的痕迹。残存纸片上有'遗嘱'二字的碎片。有人在销毁与遗嘱相关的文件。",
+      "type": "physical",
+      "foundInScene": "scene-02",
+      "isKeyEvidence": true
+    },
+    {
+      "id": "clue-06",
+      "name": "吗啡成瘾与诊所隐患",
+      "description": "孙医生承认长期给白景山开含有吗啡的止痛药，死者已对此成瘾。死者最近发现诊所账目问题并威胁要举报他。",
+      "type": "testimony",
+      "foundInDialogue": "dlg-05-02",
+      "relatedCharacter": "char-05",
+      "isKeyEvidence": false
+    },
+    {
+      "id": "clue-07",
+      "name": "何美琳的复仇动机",
+      "description": "何美琳的丈夫七年前死于工厂大火，而白景山是被指派去仓库的那个人，但他爽约了。何美琳指责白景山导致了丈夫的死亡，并在当天（忌日）前去对峙。",
+      "type": "testimony",
+      "foundInDialogue": "dlg-04-03",
+      "relatedCharacter": "char-04",
+      "isKeyEvidence": false
+    },
+    {
+      "id": "clue-08",
+      "name": "七年忌日",
+      "description": "白景山死于8月15日，正是七年前何美琳丈夫死于工厂大火的同一日期。这不是巧合——凶手刻意选择了这个日期。",
+      "type": "contradiction",
+      "foundInScene": "scene-03",
+      "relatedCharacter": "char-04",
+      "isKeyEvidence": true
+    }
+  ],
+  "truth": {
+    "culpritId": "char-03",
+    "motive": "管家赵德发是白景山同父异母的弟弟。二十年前白景山为了独吞家产，伪造证据将赵德发以'盗窃'之名逐出家门。赵德发隐姓埋名回来做管家，本意只是想在暗处看着家人。但当白景山修改遗嘱（将他彻底排除在外）并记录了更多针对身边人的秘密后，赵德发决定在何美琳丈夫的忌日下手，将嫌疑引向所有人。",
+    "method": "赵德发在孙医生离开后，将氰化物投入白景山的茶杯中。他利用白景山的吗啡成瘾——他知道孙医生的镇定剂会让白景山短暂昏迷后醒来口渴喝茶。他伪造了遗书，使用的是多年来模仿白景山笔迹练出的技能。他擦掉了杯子上的指纹，把遗书放在死者的左手边（忘了他不是左撇子），并在后花园烧毁了新遗嘱中涉及他身份的那一页。",
+    "methodClueIds": ["clue-01", "clue-02", "clue-05"],
+    "motiveClueId": "clue-03",
+    "timeline": [
+      { "time": "20:30", "event": "孙医生到达白公馆，为白景山做例行检查并注射含吗啡的镇定剂" },
+      { "time": "20:50", "event": "何美琳来访，与白景山就股份一事争吵，白景山表示'死也不会卖'" },
+      { "time": "21:00", "event": "孙医生离开。何美琳离开。白景山因镇定剂作用短暂昏迷" },
+      { "time": "21:15", "event": "赵德发进入书房，将氰化物投入已泡好的龙井茶中" },
+      { "time": "21:20", "event": "白景山苏醒，喝下毒茶" },
+      { "time": "21:25", "event": "白景山死亡。赵德发将遗书放在左手边，擦掉茶杯指纹" },
+      { "time": "21:30", "event": "白玉兰从后门离开（被赵德发目击）。赵德发在后花园烧毁新遗嘱相关页码" },
+      { "time": "21:30-22:00", "event": "赵德发回到厨房，假装一直在准备夜宵" },
+      { "time": "22:15", "event": "赵德发'发现'尸体并通报全家" }
+    ],
+    "keyEvidenceIds": ["clue-01", "clue-02", "clue-03", "clue-04", "clue-05", "clue-08"],
+    "twist": "管家赵德发不是一般的下人——他是白家的血脉。他做这一切不是临时起意，而是二十年隐忍的复仇。他巧妙地利用了这个家里每个人与死者之间的矛盾，让他们互相怀疑。他甚至利用孙医生的药让死者自愿喝下毒茶，利用何美琳丈夫的忌日来转移视线。只有左手边那封遗书出卖了他——他太过关注笔迹模仿，忘了生活的常识：右撇子不会把重要的东西放在左边。",
+    "fullStory": "1898年，白家老爷在乡下有过一段短暂的姻缘，生下了赵德发。为了家族体面，这个孩子被秘密寄养。1916年，白家老爷去世，白景山继承了家产。他发现了父亲留下的秘密文件，得知赵德发的存在。为了防止分家产，白景山伪造了赵德发'盗窃主家财物'的证据，将他赶了出去。\n\n赵德发流浪了十几年，在药房做过学徒，在工厂做过账房。1935年，他化名赵德发应聘白公馆管家。白景山没有认出他——当年被赶走时还是个少年。\n\n赵德发本来只想在暗处看着。但白景山开始怀疑他。那本秘密账本里，白景山写道：'管家赵某，身份可疑，需彻查。新遗嘱中应将其排除。'\n\n1936年8月15日，恰好是何美琳丈夫去世七周年。赵德发决定动手。他早已摸清了白景山的作息和孙医生的用药。他在医生走后下手，在茶中下毒。他伪造遗书以制造自杀假象——但他太紧张了，把遗书放在了左边。\n\n花园里烧掉的是新遗嘱复印件——他撕掉了涉及自己身份调查的那一页。他准备了二十年，等的就是这一天。\n\n但一个小小的错误——左手边的遗书——暴露了一切。"
+  }
+}

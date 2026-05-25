@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: #0f0b08;
+  --color-bg-main: #1a1410;
+  --color-bg-card: #231b14;
+  --color-bg-elevated: #2d2319;
+  --color-border: #3d3025;
+  --color-border-light: #544735;
+  --color-text-primary: #e8dccf;
+  --color-text-secondary: #9b8b79;
+  --color-text-muted: #6b5f50;
+  --color-accent: #c9a96e;
+  --color-accent-light: #e0c78a;
+  --color-accent-dim: #8a7040;
+  --color-warning: #c9846e;
+  --color-success: #7db892;
+  --color-contradiction: #d4786e;
+  --color-clue-physical: #8bb8d6;
+  --color-clue-testimony: #8ebf8e;
+  --font-display: 'Georgia', 'Noto Serif SC', 'Songti SC', serif;
+  --font-body: 'Georgia', 'Noto Serif SC', serif;
+}
+
+/* === BASE === */
+body {
+  margin: 0;
+  background: var(--color-bg-deep);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === NOISE TEXTURE OVERLAY === */
+#root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* === VIGNETTE === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%);
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-dim);
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* === SELECTION === */
+::selection {
+  background: rgba(201, 169, 110, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(201, 169, 110, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(201, 169, 110, 0.4); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-in {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.animate-in-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.animate-in-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.animate-in-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.animate-in-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+/* === INK WASH TRANSITION === */
+@keyframes inkWipeIn {
+  0% { clip-path: circle(0% at 20% 80%); opacity: 0; }
+  40% { clip-path: circle(40% at 30% 60%); opacity: 1; }
+  100% { clip-path: circle(150% at 50% 50%); opacity: 1; }
+}
+@keyframes inkWipeOut {
+  0% { clip-path: circle(150% at 50% 50%); opacity: 1; }
+  100% { clip-path: circle(0% at 80% 20%); opacity: 0; }
+}
+.ink-transition-in {
+  animation: inkWipeIn 0.7s ease-in-out forwards;
+}
+.ink-transition-out {
+  animation: inkWipeOut 0.5s ease-in forwards;
+}
+
+/* === CLUE POP === */
+@keyframes cluePop {
+  0% { transform: scale(0.5); opacity: 0; filter: brightness(3); }
+  50% { transform: scale(1.08); filter: brightness(1.5); }
+  100% { transform: scale(1); opacity: 1; filter: brightness(1); }
+}
+.clue-new {
+  animation: cluePop 0.5s ease-out;
+}

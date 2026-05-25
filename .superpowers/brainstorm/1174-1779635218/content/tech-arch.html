@@ -1,0 +1,135 @@
+<h2>技术架构</h2>
+<p class="subtitle">前端 React + 后端 Express · 单体仓库</p>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>项目结构</h3>
+<div class="section">
+  <div style="background: #0f0f1a; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; font-family: monospace; font-size: 13px; color: #aaa; line-height: 1.7;">
+    <span style="color: #569cd6;">推理游戏/</span><br>
+    ├── <span style="color: #569cd6;">client/</span>                    <span style="color: #6a9955;"># Vite + React + TypeScript</span><br>
+    │   ├── src/<br>
+    │   │   ├── <span style="color: #569cd6;">pages/</span>             <span style="color: #6a9955;"># 路由页面</span><br>
+    │   │   │   ├── HomePage.tsx          <span style="color: #6a9955;"># 首页 & 案件配置</span><br>
+    │   │   │   ├── GeneratePage.tsx      <span style="color: #6a9955;"># AI 生成 & 加载</span><br>
+    │   │   │   ├── OpeningPage.tsx       <span style="color: #6a9955;"># 案件开场</span><br>
+    │   │   │   ├── InvestigatePage.tsx   <span style="color: #6a9955;"># 调查阶段</span><br>
+    │   │   │   ├── ReasoningPage.tsx     <span style="color: #6a9955;"># 推理面板</span><br>
+    │   │   │   └── VerdictPage.tsx       <span style="color: #6a9955;"># 真相揭晓</span><br>
+    │   │   ├── <span style="color: #569cd6;">components/</span>        <span style="color: #6a9955;"># 可复用组件</span><br>
+    │   │   │   ├── DialogueBox.tsx       <span style="color: #6a9955;"># 对话面板</span><br>
+    │   │   │   ├── SceneView.tsx         <span style="color: #6a9955;"># 场景视图</span><br>
+    │   │   │   ├── ClueBar.tsx           <span style="color: #6a9955;"># 线索栏</span><br>
+    │   │   │   ├── ClueCard.tsx          <span style="color: #6a9955;"># 线索卡片</span><br>
+    │   │   │   ├── CharacterCard.tsx     <span style="color: #6a9955;"># 人物卡片</span><br>
+    │   │   │   ├── ReasoningCanvas.tsx   <span style="color: #6a9955;"># 推理画布</span><br>
+    │   │   │   └── TypingText.tsx        <span style="color: #6a9955;"># 打字机文本</span><br>
+    │   │   ├── <span style="color: #569cd6;">store/</span>             <span style="color: #6a9955;"># Zustand 状态管理</span><br>
+    │   │   │   └── gameStore.ts          <span style="color: #6a9955;"># 全部游戏状态</span><br>
+    │   │   ├── <span style="color: #569cd6;">types/</span>             <span style="color: #6a9955;"># TypeScript 类型</span><br>
+    │   │   │   └── case.ts              <span style="color: #6a9955;"># 案件数据结构</span><br>
+    │   │   └── <span style="color: #569cd6;">api/</span>               <span style="color: #6a9955;"># 后端 API 调用</span><br>
+    │   │       └── client.ts<br>
+    │   └── index.html<br>
+    ├── <span style="color: #569cd6;">server/</span>                    <span style="color: #6a9955;"># Node.js + Express</span><br>
+    │   ├── src/<br>
+    │   │   ├── index.ts                <span style="color: #6a9955;"># 服务入口</span><br>
+    │   │   ├── <span style="color: #569cd6;">routes/</span><br>
+    │   │   │   ├── generate.ts         <span style="color: #6a9955;"># POST /api/generate</span><br>
+    │   │   │   └── cases.ts            <span style="color: #6a9955;"># GET /api/cases</span><br>
+    │   │   ├── <span style="color: #569cd6;">services/</span><br>
+    │   │   │   └── ai.ts               <span style="color: #6a9955;"># Claude API 调用 + Prompt 编排</span><br>
+    │   │   ├── <span style="color: #569cd6;">prompts/</span><br>
+    │   │   │   ├── skeleton.ts         <span style="color: #6a9955;"># 诡计骨架 Prompt</span><br>
+    │   │   │   ├── characters.ts       <span style="color: #6a9955;"># 人物生成 Prompt</span><br>
+    │   │   │   └── dialogues.ts        <span style="color: #6a9955;"># 对话生成 Prompt</span><br>
+    │   │   └── <span style="color: #569cd6;">data/</span>              <span style="color: #6a9955;"># 生成案件 JSON 存储</span><br>
+    │   └── tsconfig.json<br>
+    └── package.json                     <span style="color: #6a9955;"># 工作区根配置</span>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>技术选型</h3>
+<div class="section">
+  <table style="width: 100%; font-size: 14px; color: #aaa; border-collapse: collapse;">
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd; width: 160px;">前端框架</td><td style="padding: 10px;">React 18 + TypeScript + Vite</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">路由</td><td style="padding: 10px;">React Router v6</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">状态管理</td><td style="padding: 10px;">Zustand（轻量、无模板代码）</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">样式方案</td><td style="padding: 10px;">Tailwind CSS v4（暗色主题 + 氛围感优先）</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">推理画布</td><td style="padding: 10px;">React Flow（节点连线拖拽）</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">动画</td><td style="padding: 10px;">Framer Motion</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">后端</td><td style="padding: 10px;">Express + TypeScript + tsx</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <td style="padding: 10px; color: #ddd;">AI SDK</td><td style="padding: 10px;">@anthropic-ai/sdk</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; color: #ddd;">数据存储</td><td style="padding: 10px;">文件系统 JSON（服务端 data/ 目录）</td>
+    </tr>
+  </table>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>数据流</h3>
+<div class="section">
+  <div style="background: #0f0f1a; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; font-size: 14px; color: #aaa; line-height: 2;">
+    <div>1️⃣ 前端选择参数 → <span style="color: #ce9178;">POST /api/generate</span></div>
+    <div style="margin-left: 24px;">↓</div>
+    <div>2️⃣ 后端 <span style="color: #4ec9b0;">Prompt 编排流水线</span>（骨架→人物→对话→校验）</div>
+    <div style="margin-left: 24px;">↓</div>
+    <div>3️⃣ 输出结构化 <span style="color: #dcdcaa;">CaseData JSON</span> → 存入 server/data/ → 返回前端</div>
+    <div style="margin-left: 24px;">↓</div>
+    <div>4️⃣ 前端 <span style="color: #c586c0;">Zustand Store</span> 加载案件数据，驱动各个页面渲染</div>
+    <div style="margin-left: 24px;">↓</div>
+    <div>5️⃣ 玩家操作 → Store 更新（收集线索、对话进度、推理状态）</div>
+    <div style="margin-left: 24px;">↓</div>
+    <div>6️⃣ 提交推理 → <span style="color: #ce9178;">POST /api/verify</span> → 比对真相 → 返回评分</div>
+  </div>
+</div>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+
+<h3>核心类型定义预览</h3>
+<div class="section">
+  <div style="background: #0f0f1a; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; font-family: monospace; font-size: 12px; color: #aaa; line-height: 1.6;">
+    <span style="color: #569cd6;">interface</span> <span style="color: #4ec9b0;">CaseData</span> {<br>
+    &nbsp;&nbsp;meta: { title, style, difficulty, type, summary }<br>
+    &nbsp;&nbsp;victim: { name, age, occupation, causeOfDeath, timeOfDeath, location }<br>
+    &nbsp;&nbsp;characters: <span style="color: #4ec9b0;">Character</span>[]<br>
+    &nbsp;&nbsp;scenes: <span style="color: #4ec9b0;">Scene</span>[]<br>
+    &nbsp;&nbsp;clues: <span style="color: #4ec9b0;">Clue</span>[]<br>
+    &nbsp;&nbsp;truth: { culprit, motive, method, timeline, keyEvidence, twist }<br>
+    }<br><br>
+    <span style="color: #569cd6;">interface</span> <span style="color: #4ec9b0;">Character</span> {<br>
+    &nbsp;&nbsp;id, name, age, occupation<br>
+    &nbsp;&nbsp;relationToVictim, surfaceMotive, hiddenSecret<br>
+    &nbsp;&nbsp;alibi, telltaleLie<br>
+    &nbsp;&nbsp;dialogues: <span style="color: #4ec9b0;">Dialogue</span>[]<br>
+    }<br><br>
+    <span style="color: #569cd6;">interface</span> <span style="color: #4ec9b0;">Dialogue</span> {<br>
+    &nbsp;&nbsp;text, speaker, phase <span style="color: #6a9955;">// phase: "initial" | "deep" | "confrontation"</span><br>
+    &nbsp;&nbsp;options?: { text, leadsTo, unlocksClue? }[]<br>
+    }<br><br>
+    <span style="color: #569cd6;">interface</span> <span style="color: #4ec9b0;">Clue</span> {<br>
+    &nbsp;&nbsp;id, name, description<br>
+    &nbsp;&nbsp;type: <span style="color: #ce9178;">"physical"</span> | <span style="color: #ce9178;">"testimony"</span> | <span style="color: #ce9178;">"contradiction"</span><br>
+    &nbsp;&nbsp;foundInScene, relatedCharacter<br>
+    }<br>
+  </div>
+</div>

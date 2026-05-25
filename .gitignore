@@ -1,0 +1,11 @@
+node_modules/
+.superpowers/
+server/.env
+*.local
+dist/
+screenshots/
+test_playthrough.py
+test_full.py
+*.output
+__pycache__/
+node_modules
