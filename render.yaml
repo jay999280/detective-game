@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: detective-game
+    runtime: node
+    buildCommand: |
+      npm install
+      cd client && npm install && npx vite build && cd ..
+      cd server && npm install && cd ..
+    startCommand: cd server && npx tsx src/index.ts
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
